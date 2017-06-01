@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BasicRecyclerViewAdapter</string>
+    <string name="label.title">title %d</string>
 </resources>

@@ -15,7 +15,7 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
     }
 
     protected val context = context
-    protected var listener: OnItemClickListener? = null
+    var listener: OnItemClickListener? = null
     var listItems: MutableList<T> = mutableListOf()
 
     abstract fun onCreateItemView(parent: android.view.ViewGroup, viewType: Int): android.view.View
@@ -27,10 +27,6 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
     abstract fun useHeader(): Boolean
 
     abstract fun useFooter(): Boolean
-
-    fun setOnItemClickListener(listener : OnItemClickListener) {
-        this.listener = listener
-    }
 
     override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewWrapper<View> {
         when (viewType) {
