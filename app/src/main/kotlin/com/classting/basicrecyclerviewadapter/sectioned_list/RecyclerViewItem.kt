@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.basic_list
+package com.classting.basicrecyclerviewadapter.sectioned_list
 
 import android.content.Context
 import android.util.AttributeSet
@@ -28,7 +28,7 @@ open class RecyclerViewItem : LinearLayout {
         this.layoutParams = params
     }
 
-    open fun bind(title: String, position: Int) {
-        this.title.text = "$title $position"
+    open fun bind(data: SampleData?) {
+        this.title.text = data?.content?.orEmpty()
     }
 }

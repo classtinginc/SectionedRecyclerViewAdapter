@@ -7,10 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import butterknife.bindView
 import com.classting.basicrecyclerviewadapter.R
+import com.classting.basicrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity
 import com.classting.classtingcard.common.view.listener.RecyclerViewScrollListener
 import com.classting.library.DividerItemDecoration
 import com.classting.library.OnItemClickListener
 import com.classting.library.RecyclerViewUtils
+import org.jetbrains.anko.intentFor
 
 /**
  * Created by BN on 2015. 12. 1..
@@ -67,7 +69,11 @@ class BasicRecyclerViewActivity : AppCompatActivity(), BasicRecyclerViewView, On
         adapter.showLoadingFooter()
     }
 
-    override fun onClickItemListener(view: View, position: Int) {}
+    override fun onClickItemListener(view: View, position: Int) {
+        if (position == 0) {
+            startActivity(intentFor<SectionedRecyclerViewActivity>())
+        }
+    }
 
     override fun onLongClickItemListener(view: View, position: Int) {}
 

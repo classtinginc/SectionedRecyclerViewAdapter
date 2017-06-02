@@ -40,4 +40,7 @@ dependencies {
     compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
 
     compile('io.reactivex:rxandroid:1.2.0')
+
+    compile 'org.jetbrains.anko:anko-sdk15:0.8.2'
+    compile 'org.jetbrains.anko:anko-support-v4:0.8.2'
 }
