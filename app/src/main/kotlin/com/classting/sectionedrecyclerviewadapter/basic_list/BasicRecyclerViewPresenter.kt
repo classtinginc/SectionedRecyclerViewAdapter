@@ -14,6 +14,7 @@ class BasicRecyclerViewPresenter {
     private val DELAY_TIME = 2000L
 
     private val subscription by lazy { CompositeSubscription() }
+    private val items by lazy { mutableListOf<String>() }
     var view: BasicRecyclerViewView? = null
 
     fun onDetach() {
@@ -31,9 +32,12 @@ class BasicRecyclerViewPresenter {
     private fun getSampleData(loadMore: Boolean) {
         subscription.add(Observable.create<MutableList<String>> { subscriber ->
             val data = mutableListOf<String>()
-            (0..ITEM_COUNT - 1).forEach {
-                data.add("item")
+            val start = items.size
+            val end = start + ITEM_COUNT - 1
+            (start..end).forEachIndexed { index, i ->
+                data.add("item ${index + start}")
             }
+            items.addAll(data)
             subscriber.onNext(data)
         }.observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.newThread())

@@ -29,6 +29,10 @@ open class RecyclerViewItem : LinearLayout {
     }
 
     open fun bind(title: String, position: Int) {
-        this.title.text = "$title $position"
+        if (position == 0) {
+            this.title.text = "move to SectionedRecyclerViewActivity"
+        } else {
+            this.title.text = title
+        }
     }
 }

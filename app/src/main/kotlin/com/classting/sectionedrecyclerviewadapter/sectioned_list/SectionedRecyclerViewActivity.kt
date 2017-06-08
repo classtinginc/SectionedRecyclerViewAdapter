@@ -42,6 +42,7 @@ class SectionedRecyclerViewActivity : AppCompatActivity(), SectionedRecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recyclerview)
+        supportActionBar?.title = "SectionedRecyclerViewActivity"
 
         loadView()
         presenter.getData()
