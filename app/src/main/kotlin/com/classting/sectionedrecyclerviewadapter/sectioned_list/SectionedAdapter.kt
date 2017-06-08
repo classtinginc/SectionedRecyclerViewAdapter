@@ -1,9 +1,9 @@
-package com.classting.basicrecyclerviewadapter.basic_list
+package com.classting.sectionedrecyclerviewadapter.sectioned_list
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import com.classting.basicrecyclerviewadapter.LoadingFooter
+import com.classting.sectionedrecyclerviewadapter.LoadingFooter
 import com.classting.classtingcard.consts.enums.FooterType
 import com.classting.library.RecyclerViewBaseAdapter
 import com.classting.library.ViewWrapper
@@ -11,9 +11,9 @@ import com.classting.library.ViewWrapper
 /**
  * Created by BN on 2015. 12. 1..
  */
-class BasicRecyclerViewAdapter(context: Context) : RecyclerViewBaseAdapter<String>(context) {
+class SectionedAdapter(context: Context) : RecyclerViewBaseAdapter<SampleData>(context) {
 
-    private var footerType: FooterType = FooterType.LOADING
+    private var footerType: FooterType = FooterType.EMPTY
 
     override fun onCreateItemView(parent: ViewGroup, viewType: Int): View = RecyclerViewItem(context)
 
@@ -35,21 +35,11 @@ class BasicRecyclerViewAdapter(context: Context) : RecyclerViewBaseAdapter<Strin
 
     private fun bindItem(holder: ViewWrapper<View>, position: Int) {
         val item = holder.view as RecyclerViewItem
-        item.bind(getItem(position).orEmpty(), position)
+        item.bind(getItem(position))
     }
 
     private fun bindFooter(holder: ViewWrapper<View>) {
         val footer = holder.view as LoadingFooter
         footer.showFooter(footerType)
-    }
-
-    fun showEmptyFooter() {
-        footerType = FooterType.EMPTY
-        notifyItemChanged(itemCount - 1)
-    }
-
-    fun showLoadingFooter() {
-        footerType = FooterType.LOADING
-        notifyItemChanged(itemCount - 1)
     }
 }

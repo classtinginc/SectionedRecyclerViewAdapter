@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.basic_list
+package com.classting.sectionedrecyclerviewadapter.basic_list
 
 import android.os.Handler
 import rx.Observable

@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter;
+package com.classting.sectionedrecyclerviewadapter;
 
 import org.junit.Test;
 

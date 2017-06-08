@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.sectioned_list
+package com.classting.sectionedrecyclerviewadapter.sectioned_list
 
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers

@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.sectioned_list
+package com.classting.sectionedrecyclerviewadapter.sectioned_list
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import butterknife.bindView
-import com.classting.basicrecyclerviewadapter.R
+import com.classting.sectionedrecyclerviewadapter.R
 
 /**
  * Created by BN on 2016. 1. 21..

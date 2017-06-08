@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.basic_list
+package com.classting.sectionedrecyclerviewadapter.basic_list
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import butterknife.bindView
-import com.classting.basicrecyclerviewadapter.R
-import com.classting.basicrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity
+import com.classting.sectionedrecyclerviewadapter.R
+import com.classting.sectionedrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity
 import com.classting.classtingcard.common.view.listener.RecyclerViewScrollListener
 import com.classting.library.DividerItemDecoration
 import com.classting.library.OnItemClickListener

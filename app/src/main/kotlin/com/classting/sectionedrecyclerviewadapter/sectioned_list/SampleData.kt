@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.sectioned_list
+package com.classting.sectionedrecyclerviewadapter.sectioned_list
 
 /**
  * Created by BN on 2017. 6. 1..

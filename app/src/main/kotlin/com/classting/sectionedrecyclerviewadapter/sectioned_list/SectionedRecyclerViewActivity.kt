@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter.sectioned_list
+package com.classting.sectionedrecyclerviewadapter.sectioned_list
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import butterknife.bindView
-import com.classting.basicrecyclerviewadapter.R
+import com.classting.sectionedrecyclerviewadapter.R
 import com.classting.library.*
 import com.classting.library.SectionedRecyclerViewAdapter
 

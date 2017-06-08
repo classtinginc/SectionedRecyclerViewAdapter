@@ -1,4 +1,4 @@
-package com.classting.basicrecyclerviewadapter;
+package com.classting.sectionedrecyclerviewadapter;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
