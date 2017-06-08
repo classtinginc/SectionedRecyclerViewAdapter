@@ -1,4 +1,4 @@
-package com.classting.library
+package com.classting.sectionedrecyclerviewadapter
 
 import android.view.View
 
@@ -49,14 +49,14 @@ class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
     }
 
     override fun onCreateItemView(parent: android.view.ViewGroup, viewType: Int): android.view.View {
-        if (viewType == com.classting.library.SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
+        if (viewType == SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
             return sectionizer.onCreateItemView(parent)
         }
         return baseAdapter.onCreateItemView(parent, viewType)
     }
 
     override fun onBindViewHolder(holder: ViewWrapper<View>, position: Int) {
-        if (getItemViewType(position) == com.classting.library.SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
+        if (getItemViewType(position) == SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
             sectionizer.onBindViewHolder(holder, position, sections.get(position).title.orEmpty())
         } else {
             baseAdapter.onBindViewHolder(holder, getItemPosition(position))
@@ -65,7 +65,7 @@ class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
 
     override fun getItemViewType(position: Int): Int {
         if (isSectionHeaderPosition(position)) {
-            return com.classting.library.SectionedRecyclerViewAdapter.Companion.TYPE_SECTION
+            return SectionedRecyclerViewAdapter.Companion.TYPE_SECTION
         }
         return baseAdapter.getItemViewType(getItemPosition(position))
     }

@@ -9,9 +9,9 @@ import butterknife.bindView
 import com.classting.sectionedrecyclerviewadapter.R
 import com.classting.sectionedrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity
 import com.classting.classtingcard.common.view.listener.RecyclerViewScrollListener
-import com.classting.library.DividerItemDecoration
-import com.classting.library.OnItemClickListener
-import com.classting.library.RecyclerViewUtils
+import com.classting.sectionedrecyclerviewadapter.DividerItemDecoration
+import com.classting.sectionedrecyclerviewadapter.OnItemClickListener
+import com.classting.sectionedrecyclerviewadapter.RecyclerViewUtils
 import org.jetbrains.anko.intentFor
 
 /**

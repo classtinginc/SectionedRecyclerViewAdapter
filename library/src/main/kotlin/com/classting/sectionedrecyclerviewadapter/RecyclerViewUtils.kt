@@ -1,4 +1,4 @@
-package com.classting.library
+package com.classting.sectionedrecyclerviewadapter
 
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager

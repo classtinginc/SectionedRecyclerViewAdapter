@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.classting.sectionedrecyclerviewadapter.LoadingFooter
 import com.classting.classtingcard.consts.enums.FooterType
-import com.classting.library.RecyclerViewBaseAdapter
-import com.classting.library.ViewWrapper
+import com.classting.sectionedrecyclerviewadapter.RecyclerViewBaseAdapter
+import com.classting.sectionedrecyclerviewadapter.ViewWrapper
 
 /**
  * Created by BN on 2015. 12. 1..

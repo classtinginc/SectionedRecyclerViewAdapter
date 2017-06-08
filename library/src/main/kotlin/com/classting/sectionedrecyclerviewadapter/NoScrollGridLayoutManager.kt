@@ -1,4 +1,4 @@
-package com.classting.library
+package com.classting.sectionedrecyclerviewadapter
 
 import android.annotation.TargetApi
 import android.content.Context

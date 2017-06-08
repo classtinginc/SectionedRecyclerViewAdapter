@@ -1,4 +1,4 @@
-package com.classting.library
+package com.classting.sectionedrecyclerviewadapter
 
 import android.view.View
 
@@ -30,8 +30,8 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
 
     override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewWrapper<View> {
         when (viewType) {
-            com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_HEADER -> return ViewWrapper(onCreateHeaderView(parent, viewType))
-            com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_FOOTER -> return ViewWrapper(onCreateFooterView(parent, viewType))
+            RecyclerViewBaseAdapter.Companion.TYPE_HEADER -> return ViewWrapper(onCreateHeaderView(parent, viewType))
+            RecyclerViewBaseAdapter.Companion.TYPE_FOOTER -> return ViewWrapper(onCreateFooterView(parent, viewType))
             else -> return ViewWrapper(onCreateItemView(parent, viewType))
         }
     }
@@ -48,10 +48,10 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
     }
 
     fun getItem(position: Int): T? {
-        if (getItemViewType(position) == com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_HEADER) {
+        if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_HEADER) {
             return null
         }
-        if (getItemViewType(position) == com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_FOOTER) {
+        if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_FOOTER) {
             return null
         }
         if (useHeader()) {
@@ -62,9 +62,9 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
 
     override fun getItemViewType(position: Int): Int {
         when {
-            position == 0 && useHeader() -> return com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_HEADER
-            position == itemCount - 1 && useFooter() -> return com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_FOOTER
-            else -> return com.classting.library.RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT
+            position == 0 && useHeader() -> return RecyclerViewBaseAdapter.Companion.TYPE_HEADER
+            position == itemCount - 1 && useFooter() -> return RecyclerViewBaseAdapter.Companion.TYPE_FOOTER
+            else -> return RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT
         }
     }
 

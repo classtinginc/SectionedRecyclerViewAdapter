@@ -9,8 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.bindView
 import com.classting.sectionedrecyclerviewadapter.R
-import com.classting.library.*
-import com.classting.library.SectionedRecyclerViewAdapter
+import com.classting.sectionedrecyclerviewadapter.OnItemClickListener
+import com.classting.sectionedrecyclerviewadapter.RecyclerViewUtils
+import com.classting.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
+import com.classting.sectionedrecyclerviewadapter.DividerItemDecoration
+import com.classting.sectionedrecyclerviewadapter.Sectionizer
+import com.classting.sectionedrecyclerviewadapter.ViewWrapper
 
 /**
  * Created by BN on 2015. 12. 1..
