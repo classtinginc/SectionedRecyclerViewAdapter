@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="com.classting.sectionedrecyclerviewadapter">
+    package="com.classtinginc.sectionedrecyclerviewadapter">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.classting.sectionedrecyclerviewadapter.basic_list.BasicRecyclerViewActivity"
+            android:name="com.classtinginc.sectionedrecyclerviewadapter.basic_list.BasicRecyclerViewActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-            android:name="com.classting.sectionedrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity"
+            android:name="com.classtinginc.sectionedrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity"
             android:screenOrientation="portrait"/>
 
     </application>
