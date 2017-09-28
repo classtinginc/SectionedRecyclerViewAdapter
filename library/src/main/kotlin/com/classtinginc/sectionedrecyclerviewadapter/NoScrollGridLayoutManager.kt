@@ -9,7 +9,7 @@ import android.util.AttributeSet
 /**
  * Created by chobyunghoon on 2016. 5. 14..
  */
-class NoScrollGridLayoutManager : GridLayoutManager {
+open class NoScrollGridLayoutManager : GridLayoutManager {
 
     constructor(context: Context, spanCount: Int) : super(context, spanCount)
 

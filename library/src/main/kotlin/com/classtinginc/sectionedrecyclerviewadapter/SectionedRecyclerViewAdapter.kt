@@ -2,7 +2,7 @@ package com.classtinginc.sectionedrecyclerviewadapter
 
 import android.view.View
 
-class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
+open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
                                       val baseAdapter: RecyclerViewBaseAdapter<T>,
                                       val sectionizer: Sectionizer<T>) : RecyclerViewBaseAdapter<Section>(context) {
 

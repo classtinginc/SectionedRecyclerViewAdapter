@@ -34,7 +34,7 @@ class BasicRecyclerViewPresenter {
             val data = mutableListOf<String>()
             val start = items.size
             val end = start + ITEM_COUNT - 1
-            (start..end).forEachIndexed { index, i ->
+            (start..end).forEachIndexed { index, _ ->
                 data.add("item ${index + start}")
             }
             items.addAll(data)

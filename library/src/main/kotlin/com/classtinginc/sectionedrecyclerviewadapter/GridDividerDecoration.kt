@@ -18,7 +18,7 @@ import android.view.View
  * that are expected from a vertical list implementation, such as
  * ListView.
  */
-class GridDividerDecoration : RecyclerView.ItemDecoration {
+open class GridDividerDecoration : RecyclerView.ItemDecoration {
 
     private val divider: Drawable
     private var topDivider = false

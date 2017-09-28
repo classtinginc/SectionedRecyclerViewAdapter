@@ -22,8 +22,8 @@ class SectionedRecyclerViewPresenter {
     fun getData() {
         subscription.add(Observable.create<MutableList<SampleData>> { subscriber ->
             val data = mutableListOf<SampleData>()
-            (1..SECTION_COUNT).forEachIndexed { sectionedIndex, i ->
-                (0..ITEM_COUNT - 1).forEachIndexed { index, i ->
+            (1..SECTION_COUNT).forEachIndexed { sectionedIndex, _ ->
+                (0..ITEM_COUNT - 1).forEachIndexed { index, _ ->
                     data.add(SampleData("section$sectionedIndex", "item$index"))
                 }
             }

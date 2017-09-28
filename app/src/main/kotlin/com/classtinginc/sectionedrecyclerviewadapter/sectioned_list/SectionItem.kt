@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import butterknife.bindView
 import com.classtinginc.sectionedrecyclerviewadapter.R
+import kotterknife.bindView
 
 /**
  * Created by BN on 2016. 1. 21..

@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import butterknife.bindView
 import com.classtinginc.classtingcard.consts.enums.FooterType
+import kotterknife.bindView
 
 /**
  * Created by BN on 2016. 1. 21..

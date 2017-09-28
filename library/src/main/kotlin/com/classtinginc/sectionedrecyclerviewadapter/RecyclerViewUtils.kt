@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView
 /**
  * Created by BN on 2015. 12. 15..
  */
-class RecyclerViewUtils {
+open class RecyclerViewUtils {
 
     companion object {
         fun setLinearLayoutManager(context: Context, recyclerView: RecyclerView) {

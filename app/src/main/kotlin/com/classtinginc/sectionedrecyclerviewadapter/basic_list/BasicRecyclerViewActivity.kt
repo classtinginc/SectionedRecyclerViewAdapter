@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import butterknife.bindView
 import com.classtinginc.sectionedrecyclerviewadapter.R
 import com.classtinginc.sectionedrecyclerviewadapter.sectioned_list.SectionedRecyclerViewActivity
 import com.classtinginc.classtingcard.common.view.listener.RecyclerViewScrollListener
 import com.classtinginc.sectionedrecyclerviewadapter.DividerItemDecoration
 import com.classtinginc.sectionedrecyclerviewadapter.OnItemClickListener
 import com.classtinginc.sectionedrecyclerviewadapter.RecyclerViewUtils
+import kotterknife.bindView
 import org.jetbrains.anko.intentFor
 
 /**

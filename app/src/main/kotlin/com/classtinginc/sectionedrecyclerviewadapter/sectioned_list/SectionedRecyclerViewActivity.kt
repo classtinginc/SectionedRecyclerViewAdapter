@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import butterknife.bindView
 import com.classtinginc.sectionedrecyclerviewadapter.R
 import com.classtinginc.sectionedrecyclerviewadapter.OnItemClickListener
 import com.classtinginc.sectionedrecyclerviewadapter.RecyclerViewUtils
@@ -15,6 +14,7 @@ import com.classtinginc.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapte
 import com.classtinginc.sectionedrecyclerviewadapter.DividerItemDecoration
 import com.classtinginc.sectionedrecyclerviewadapter.Sectionizer
 import com.classtinginc.sectionedrecyclerviewadapter.ViewWrapper
+import kotterknife.bindView
 
 /**
  * Created by BN on 2015. 12. 1..
