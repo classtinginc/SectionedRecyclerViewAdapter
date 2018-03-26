@@ -5,6 +5,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.classtinginc.sectionedrecyclerviewadapter.ViewType.TYPE_FOOTER
+import com.classtinginc.sectionedrecyclerviewadapter.ViewType.TYPE_HEADER
 
 /**
  * Created by BN on 2015. 12. 15..
@@ -63,8 +65,8 @@ open class RecyclerViewUtils {
         }
 
         private fun getDefaultSpanSize(position: Int, recyclerView: RecyclerView): Int =
-            if (recyclerView.adapter.getItemViewType(position) == RecyclerViewBaseAdapter.TYPE_FOOTER ||
-                recyclerView.adapter.getItemViewType(position) == RecyclerViewBaseAdapter.TYPE_HEADER) {
+            if (recyclerView.adapter.getItemViewType(position) == TYPE_FOOTER ||
+                recyclerView.adapter.getItemViewType(position) == TYPE_HEADER) {
                 (recyclerView.layoutManager as GridLayoutManager).spanCount
             } else 1
     }

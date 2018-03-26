@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import com.classtinginc.sectionedrecyclerviewadapter.LoadingFooter
 import com.classtinginc.classtingcard.consts.enums.FooterType
 import com.classtinginc.sectionedrecyclerviewadapter.RecyclerViewBaseAdapter
+import com.classtinginc.sectionedrecyclerviewadapter.ViewType.TYPE_DEFAULT
+import com.classtinginc.sectionedrecyclerviewadapter.ViewType.TYPE_FOOTER
 import com.classtinginc.sectionedrecyclerviewadapter.ViewWrapper
 
 /**

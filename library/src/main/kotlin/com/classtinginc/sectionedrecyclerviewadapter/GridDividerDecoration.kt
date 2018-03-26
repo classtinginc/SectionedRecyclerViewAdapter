@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.classtinginc.sectionedrecyclerviewadapter.ViewType.TYPE_FOOTER
 
 /**
  * ItemDecoration implementation that applies and inset margin
@@ -105,7 +106,7 @@ open class GridDividerDecoration : RecyclerView.ItemDecoration {
 
     private fun isDecorated(child: View?, parent: RecyclerView): Boolean {
         val type = parent.adapter.getItemViewType(parent.getChildAdapterPosition(child))
-        return type != RecyclerViewBaseAdapter.TYPE_FOOTER
+        return type != TYPE_FOOTER
     }
 
     companion object {

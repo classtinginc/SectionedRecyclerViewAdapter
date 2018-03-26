@@ -6,6 +6,7 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.classtinginc.sectionedrecyclerviewadapter.ViewType.TYPE_FOOTER
 
 /**
  * Created by BN on 2015. 12. 14..
@@ -90,6 +91,6 @@ open class DividerItemDecoration(context: Context, orientation: Int) : RecyclerV
 
     open fun isDecorated(child: View?, parent: RecyclerView): Boolean {
         val type = parent.adapter.getItemViewType(parent.getChildAdapterPosition(child))
-        return type != RecyclerViewBaseAdapter.TYPE_FOOTER
+        return type != TYPE_FOOTER
     }
 }
