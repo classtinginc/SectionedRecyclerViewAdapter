@@ -6,10 +6,6 @@ open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
                                                private val baseAdapter: RecyclerViewBaseAdapter<T>,
                                                private val sectionizer: Sectionizer<T>) : RecyclerViewBaseAdapter<Section>(context) {
 
-    companion object {
-        val TYPE_SECTION = 3
-    }
-
     override fun onCreateHeaderView(parent: android.view.ViewGroup, viewType: Int): android.view.View = baseAdapter.onCreateHeaderView(parent, viewType)
 
     override fun onCreateFooterView(parent: android.view.ViewGroup, viewType: Int): android.view.View = baseAdapter.onCreateFooterView(parent, viewType)
@@ -49,14 +45,14 @@ open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
     }
 
     override fun onCreateItemView(parent: android.view.ViewGroup, viewType: Int): android.view.View {
-        if (viewType == SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
+        if (viewType == ViewType.TYPE_SECTION) {
             return sectionizer.onCreateItemView(parent)
         }
         return baseAdapter.onCreateItemView(parent, viewType)
     }
 
     override fun onBindViewHolder(holder: ViewWrapper<View>, position: Int) =
-        if (getItemViewType(position) == SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
+        if (getItemViewType(position) == ViewType.TYPE_SECTION) {
             sectionizer.onBindViewHolder(holder, position, sections.get(position).title.orEmpty())
         } else {
             baseAdapter.onBindViewHolder(holder, getItemPosition(position))
@@ -64,7 +60,7 @@ open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
 
     override fun getItemViewType(position: Int): Int {
         if (isSectionHeaderPosition(position)) {
-            return SectionedRecyclerViewAdapter.Companion.TYPE_SECTION
+            return ViewType.TYPE_SECTION
         }
         return baseAdapter.getItemViewType(getItemPosition(position))
     }
@@ -92,10 +88,10 @@ open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
 
     open fun getBaseItem(sectionedPosition: Int): T? {
         val position = getPurePosition(sectionedPosition)
-        if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_HEADER) {
+        if (getItemViewType(position) == ViewType.TYPE_HEADER) {
             return null
         }
-        if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_FOOTER) {
+        if (getItemViewType(position) == ViewType.TYPE_FOOTER) {
             return null
         }
         return baseAdapter.listItems[position - (if (useHeader()) 1 else 0)]
@@ -132,7 +128,7 @@ open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
         val sections = mutableListOf<Section>()
 
         (0 until baseAdapter.itemCount)
-            .filter { baseAdapter.getItemViewType(it) >= RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT }
+            .filter { baseAdapter.getItemViewType(it) >= ViewType.TYPE_DEFAULT }
             .forEach { i ->
                 baseAdapter.getItem(i)?.let {
                     val sectionName = sectionizer.getSectionTitleForItem(it)

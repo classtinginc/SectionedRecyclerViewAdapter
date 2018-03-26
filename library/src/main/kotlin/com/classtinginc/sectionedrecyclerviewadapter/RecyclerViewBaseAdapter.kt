@@ -7,13 +7,6 @@ import android.view.View
  */
 abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content.Context) : android.support.v7.widget.RecyclerView.Adapter<ViewWrapper<View>>() {
 
-    companion object {
-
-        val TYPE_HEADER = 0
-        val TYPE_FOOTER = 1
-        val TYPE_DEFAULT = 2
-    }
-
     var listener: OnItemClickListener? = null
     var listItems: MutableList<T> = mutableListOf()
 
@@ -29,8 +22,8 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
 
     override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewWrapper<View> =
             when (viewType) {
-                RecyclerViewBaseAdapter.Companion.TYPE_HEADER -> ViewWrapper(onCreateHeaderView(parent, viewType))
-                RecyclerViewBaseAdapter.Companion.TYPE_FOOTER -> ViewWrapper(onCreateFooterView(parent, viewType))
+                ViewType.TYPE_HEADER -> ViewWrapper(onCreateHeaderView(parent, viewType))
+                ViewType.TYPE_FOOTER -> ViewWrapper(onCreateFooterView(parent, viewType))
                 else -> ViewWrapper(onCreateItemView(parent, viewType))
             }
 
@@ -46,10 +39,10 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
     }
 
     fun getItem(position: Int): T? {
-        if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_HEADER) {
+        if (getItemViewType(position) == ViewType.TYPE_HEADER) {
             return null
         }
-        if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_FOOTER) {
+        if (getItemViewType(position) == ViewType.TYPE_FOOTER) {
             return null
         }
         if (useHeader()) {
@@ -59,9 +52,9 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
     }
 
     override fun getItemViewType(position: Int): Int = when {
-        position == 0 && useHeader() -> RecyclerViewBaseAdapter.Companion.TYPE_HEADER
-        position == itemCount - 1 && useFooter() -> RecyclerViewBaseAdapter.Companion.TYPE_FOOTER
-        else -> RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT
+        position == 0 && useHeader() -> ViewType.TYPE_HEADER
+        position == itemCount - 1 && useFooter() -> ViewType.TYPE_FOOTER
+        else -> ViewType.TYPE_DEFAULT
     }
 
     open fun notifyDataSetChanged(items: MutableList<T>) {
