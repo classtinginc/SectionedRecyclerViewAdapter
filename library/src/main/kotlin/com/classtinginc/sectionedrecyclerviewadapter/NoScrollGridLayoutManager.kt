@@ -18,11 +18,7 @@ open class NoScrollGridLayoutManager : GridLayoutManager {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
 
-    override fun canScrollVertically(): Boolean {
-        return false
-    }
+    override fun canScrollVertically(): Boolean = false
 
-    override fun canScrollHorizontally(): Boolean {
-        return false
-    }
+    override fun canScrollHorizontally(): Boolean = false
 }

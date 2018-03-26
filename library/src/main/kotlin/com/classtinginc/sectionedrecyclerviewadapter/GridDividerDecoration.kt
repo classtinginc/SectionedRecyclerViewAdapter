@@ -48,7 +48,7 @@ open class GridDividerDecoration : RecyclerView.ItemDecoration {
 
         val childCount = parent.childCount
 
-        for (i in 0..childCount - 1) {
+        for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
 
@@ -73,7 +73,7 @@ open class GridDividerDecoration : RecyclerView.ItemDecoration {
     fun drawHorizontal(c: Canvas, parent: RecyclerView) {
         val childCount = parent.childCount
 
-        for (i in 0..childCount - 1) {
+        for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
             if (!isDecorated(child, parent)) {
                 return

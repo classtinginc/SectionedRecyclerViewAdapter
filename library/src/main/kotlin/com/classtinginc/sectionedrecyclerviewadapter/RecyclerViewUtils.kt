@@ -22,9 +22,8 @@ open class RecyclerViewUtils {
             setScroll(recyclerView)
         }
 
-        fun setGridLayoutManager(context: Context, recyclerView: RecyclerView, gridCount: Int) {
-            setGridLayoutManager(context, recyclerView, gridCount, null)
-        }
+        fun setGridLayoutManager(context: Context, recyclerView: RecyclerView, gridCount: Int) =
+                setGridLayoutManager(context, recyclerView, gridCount, null)
 
         fun setGridLayoutManager(context: Context, recyclerView: RecyclerView, gridCount: Int, l: ((position: Int) -> Int)? ) {
 

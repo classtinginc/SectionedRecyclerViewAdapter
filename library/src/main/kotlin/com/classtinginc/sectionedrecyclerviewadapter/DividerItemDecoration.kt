@@ -45,7 +45,7 @@ open class DividerItemDecoration(context: Context, orientation: Int) : RecyclerV
 
     fun drawVertical(c: Canvas?, parent: RecyclerView?) {
         val childCount = parent!!.childCount
-        for (i in 0..childCount - 1) {
+        for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
             if (!isDecorated(child, parent)) {
                 continue
@@ -64,7 +64,7 @@ open class DividerItemDecoration(context: Context, orientation: Int) : RecyclerV
 
     fun drawHorizontal(c: Canvas?, parent: RecyclerView?) {
         val childCount = parent!!.childCount
-        for (i in 0..childCount - 1) {
+        for (i in 0 until childCount) {
             val child = parent.getChildAt(i)
             if (!isDecorated(child, parent)) {
                 continue

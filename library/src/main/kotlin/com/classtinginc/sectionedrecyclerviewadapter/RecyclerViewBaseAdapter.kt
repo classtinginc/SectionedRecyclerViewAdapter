@@ -5,7 +5,7 @@ import android.view.View
 /**
  * Created by BN on 2015. 11. 18..
  */
-abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : android.support.v7.widget.RecyclerView.Adapter<ViewWrapper<View>>() {
+abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content.Context) : android.support.v7.widget.RecyclerView.Adapter<ViewWrapper<View>>() {
 
     companion object {
 
@@ -14,7 +14,6 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
         val TYPE_DEFAULT = 2
     }
 
-    protected val context = context
     var listener: OnItemClickListener? = null
     var listItems: MutableList<T> = mutableListOf()
 
@@ -28,13 +27,12 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
 
     abstract fun useFooter(): Boolean
 
-    override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewWrapper<View> {
-        when (viewType) {
-            RecyclerViewBaseAdapter.Companion.TYPE_HEADER -> return ViewWrapper(onCreateHeaderView(parent, viewType))
-            RecyclerViewBaseAdapter.Companion.TYPE_FOOTER -> return ViewWrapper(onCreateFooterView(parent, viewType))
-            else -> return ViewWrapper(onCreateItemView(parent, viewType))
-        }
-    }
+    override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewWrapper<View> =
+            when (viewType) {
+                RecyclerViewBaseAdapter.Companion.TYPE_HEADER -> ViewWrapper(onCreateHeaderView(parent, viewType))
+                RecyclerViewBaseAdapter.Companion.TYPE_FOOTER -> ViewWrapper(onCreateFooterView(parent, viewType))
+                else -> ViewWrapper(onCreateItemView(parent, viewType))
+            }
 
     override fun getItemCount(): Int {
         var count = listItems.size
@@ -60,45 +58,36 @@ abstract class RecyclerViewBaseAdapter<T>(context: android.content.Context) : an
         return listItems[position]
     }
 
-    override fun getItemViewType(position: Int): Int {
-        when {
-            position == 0 && useHeader() -> return RecyclerViewBaseAdapter.Companion.TYPE_HEADER
-            position == itemCount - 1 && useFooter() -> return RecyclerViewBaseAdapter.Companion.TYPE_FOOTER
-            else -> return RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT
-        }
+    override fun getItemViewType(position: Int): Int = when {
+        position == 0 && useHeader() -> RecyclerViewBaseAdapter.Companion.TYPE_HEADER
+        position == itemCount - 1 && useFooter() -> RecyclerViewBaseAdapter.Companion.TYPE_FOOTER
+        else -> RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT
     }
 
-    fun notifyDataSetChanged(items: MutableList<T>) {
+    open fun notifyDataSetChanged(items: MutableList<T>) {
         listItems.clear()
         listItems.addAll(items)
         notifyDataSetChanged()
     }
 
-    fun notifyItemRangeInserted(addedItems: MutableList<T>) {
+    open fun notifyItemRangeInserted(addedItems: MutableList<T>) {
         val start = listItems.size
         listItems.addAll(addedItems)
         notifyItemsRangeInserted(start, addedItems.size)
     }
 
-    open fun notifyItemsRangeInserted(position: Int, size: Int) {
-        notifyItemRangeInserted(position + (if (useHeader()) 1 else 0), size)
-    }
+    open fun notifyItemsRangeInserted(position: Int, size: Int) =
+            notifyItemRangeInserted(position + (if (useHeader()) 1 else 0), size)
 
-    fun notifyHeaderItemChanged() {
-        notifyItemChanged(0)
-    }
+    open fun notifyHeaderItemChanged() = notifyItemChanged(0)
 
-    open fun notifyItemDataChanged(position: Int) {
-        notifyItemChanged(position + (if (useHeader()) 1 else 0))
-    }
+    open fun notifyItemDataChanged(position: Int) =
+            notifyItemChanged(position + (if (useHeader()) 1 else 0))
 
-    open fun notifyAllItemsChanged() {
-        notifyItemRangeChanged(0, itemCount)
-    }
+    open fun notifyAllItemsChanged() = notifyItemRangeChanged(0, itemCount)
 
-    open fun notifyItemDataRemoved(position: Int) {
-        notifyItemRemoved(position + (if (useHeader()) 1 else 0))
-    }
+    open fun notifyItemDataRemoved(position: Int) =
+            notifyItemRemoved(position + (if (useHeader()) 1 else 0))
 
     open fun notifyAllItemsRemoved() {
         listItems.clear()

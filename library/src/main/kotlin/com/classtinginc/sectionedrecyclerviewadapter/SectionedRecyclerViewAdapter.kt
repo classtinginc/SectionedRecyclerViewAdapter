@@ -2,9 +2,9 @@ package com.classtinginc.sectionedrecyclerviewadapter
 
 import android.view.View
 
-open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
-                                      val baseAdapter: RecyclerViewBaseAdapter<T>,
-                                      val sectionizer: Sectionizer<T>) : RecyclerViewBaseAdapter<Section>(context) {
+open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
+                                               private val baseAdapter: RecyclerViewBaseAdapter<T>,
+                                               private val sectionizer: Sectionizer<T>) : RecyclerViewBaseAdapter<Section>(context) {
 
     companion object {
         val TYPE_SECTION = 3
@@ -55,13 +55,12 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
         return baseAdapter.onCreateItemView(parent, viewType)
     }
 
-    override fun onBindViewHolder(holder: ViewWrapper<View>, position: Int) {
+    override fun onBindViewHolder(holder: ViewWrapper<View>, position: Int) =
         if (getItemViewType(position) == SectionedRecyclerViewAdapter.Companion.TYPE_SECTION) {
             sectionizer.onBindViewHolder(holder, position, sections.get(position).title.orEmpty())
         } else {
             baseAdapter.onBindViewHolder(holder, getItemPosition(position))
         }
-    }
 
     override fun getItemViewType(position: Int): Int {
         if (isSectionHeaderPosition(position)) {
@@ -70,13 +69,12 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
         return baseAdapter.getItemViewType(getItemPosition(position))
     }
 
-    fun getSectionedPosition(position: Int): Int {
-        return (position + (if (useHeader()) 1 else 0)).let { pos ->
-            pos + (0..sections.size() - 1)
-                .takeWhile { sections.valueAt(it).firstPosition <= pos }
-                .count()
-        }
-    }
+    private fun getSectionedPosition(position: Int): Int =
+            (position + (if (useHeader()) 1 else 0)).let { pos ->
+                pos + (0 until sections.size())
+                    .takeWhile { sections.valueAt(it).firstPosition <= pos }
+                    .count()
+            }
 
     private fun getItemPosition(sectionedPosition: Int): Int {
         if (isSectionHeaderPosition(sectionedPosition)) {
@@ -85,18 +83,14 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
         return getPurePosition(sectionedPosition)
     }
 
-    fun getPurePosition(sectionedPosition: Int): Int {
-        return sectionedPosition -
-            (0..sections.size() - 1)
-                .takeWhile { sections.valueAt(it).sectionedPosition <= sectionedPosition }
-                .count()
-    }
+    open fun getPurePosition(sectionedPosition: Int): Int = sectionedPosition -
+        (0 until sections.size())
+            .takeWhile { sections.valueAt(it).sectionedPosition <= sectionedPosition }
+            .count()
 
-    fun isSectionHeaderPosition(position: Int): Boolean {
-        return sections.get(position) != null
-    }
+    open fun isSectionHeaderPosition(position: Int): Boolean = sections.get(position) != null
 
-    fun getBaseItem(sectionedPosition: Int): T? {
+    open fun getBaseItem(sectionedPosition: Int): T? {
         val position = getPurePosition(sectionedPosition)
         if (getItemViewType(position) == RecyclerViewBaseAdapter.Companion.TYPE_HEADER) {
             return null
@@ -107,27 +101,21 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
         return baseAdapter.listItems[position - (if (useHeader()) 1 else 0)]
     }
 
-    override fun getItemId(position: Int): Long {
-        return if (isSectionHeaderPosition(position))
-            (Integer.MAX_VALUE - sections.indexOfKey(position)).toLong()
-        else
-            baseAdapter.getItemId(getItemPosition(position))
-    }
+    override fun getItemId(position: Int): Long = if (isSectionHeaderPosition(position))
+        (Integer.MAX_VALUE - sections.indexOfKey(position)).toLong()
+    else
+        baseAdapter.getItemId(getItemPosition(position))
 
-    override fun getItemCount(): Int {
-        return (if (valid) baseAdapter.itemCount + sections.size() else 0)
-    }
+    override fun getItemCount(): Int = (if (valid) baseAdapter.itemCount + sections.size() else 0)
 
     private fun generateSection(sections: MutableList<Section>) {
         this.sections.clear()
 
         sections.sortWith(java.util.Comparator { o, o1 ->
-            if (o.firstPosition == o1.firstPosition) {
-                0
-            } else if (o.firstPosition < o1.firstPosition) {
-                -1
-            } else {
-                1
+            when {
+                o.firstPosition == o1.firstPosition -> 0
+                o.firstPosition < o1.firstPosition -> -1
+                else -> 1
             }
         })
 
@@ -143,7 +131,7 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
     private fun getSections(): MutableList<Section> {
         val sections = mutableListOf<Section>()
 
-        (0..baseAdapter.itemCount - 1)
+        (0 until baseAdapter.itemCount)
             .filter { baseAdapter.getItemViewType(it) >= RecyclerViewBaseAdapter.Companion.TYPE_DEFAULT }
             .forEach { i ->
                 baseAdapter.getItem(i)?.let {
@@ -158,7 +146,7 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
         return sections
     }
 
-    fun notifyAllDataSetChanged() {
+    open fun notifyAllDataSetChanged() {
         generateSection(getSections())
         notifyDataSetChanged()
     }
@@ -168,37 +156,28 @@ open class SectionedRecyclerViewAdapter<T>(context: android.content.Context,
         notifyItemRangeInserted(getSectionedPosition(position), size)
     }
 
-    fun notifyItemsRangeInsertedWithSection(position: Int, size: Int) {
+    open fun notifyItemsRangeInsertedWithSection(position: Int, size: Int) {
         generateSection(getSections())
         notifyItemRangeInserted(getSectionedPosition(position) - 1, size + 1)
     }
 
-    override fun notifyItemDataChanged(position: Int) {
-        notifyItemChanged(getSectionedPosition(position))
-    }
+    override fun notifyItemDataChanged(position: Int) =
+            notifyItemChanged(getSectionedPosition(position))
 
-    fun notifyItemDataChangedWithSection(position: Int, size: Int) {
-        notifyItemChanged(getSectionedPosition(position) - 1, size + 1)
-    }
+    open fun notifyItemDataChangedWithSection(position: Int, size: Int) =
+            notifyItemChanged(getSectionedPosition(position) - 1, size + 1)
 
-    fun notifyItemsRangeChanged(position: Int, size: Int) {
-        notifyItemRangeChanged(getSectionedPosition(position), size)
-    }
+    open fun notifyItemsRangeChanged(position: Int, size: Int) =
+            notifyItemRangeChanged(getSectionedPosition(position), size)
 
-    override fun notifyAllItemsChanged() {
-        super.notifyAllItemsChanged()
-    }
+    override fun notifyItemDataRemoved(position: Int) = notifyItemsRangeRemoved(position, 1)
 
-    override fun notifyItemDataRemoved(position: Int) {
-        notifyItemsRangeRemoved(position, 1)
-    }
-
-    fun notifyItemsRangeRemoved(position: Int, size: Int) {
+    open fun notifyItemsRangeRemoved(position: Int, size: Int) {
         generateSection(getSections())
         notifyItemRangeRemoved(getSectionedPosition(position), size)
     }
 
-    fun notifyItemsRangeRemovedWithSection(position: Int, size: Int) {
+    open fun notifyItemsRangeRemovedWithSection(position: Int, size: Int) {
         generateSection(getSections())
         notifyItemRangeRemoved(getSectionedPosition(position) - 1, size + 1)
     }
