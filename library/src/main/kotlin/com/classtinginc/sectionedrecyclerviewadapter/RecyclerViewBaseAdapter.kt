@@ -45,13 +45,11 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
         if (useFooter() && position == listItems.size) {
             return null
         }
-        if (listItems.size <= position) {
+        val pos = if (useHeader()) position - 1 else position
+        if (listItems.size <= pos) {
             return null
         }
-        if (useHeader()) {
-            return listItems[position - 1]
-        }
-        return listItems[position]
+        return listItems[pos]
     }
 
     override fun getItemViewType(position: Int): Int = when {
