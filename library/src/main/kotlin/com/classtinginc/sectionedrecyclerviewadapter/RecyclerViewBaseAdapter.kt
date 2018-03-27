@@ -38,11 +38,14 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
         return count
     }
 
-    fun getItem(position: Int): T? {
+    open fun getItem(position: Int): T? {
         if (useHeader() && position == 0) {
             return null
         }
         if (useFooter() && position == listItems.size) {
+            return null
+        }
+        if (listItems.size <= position) {
             return null
         }
         if (useHeader()) {
