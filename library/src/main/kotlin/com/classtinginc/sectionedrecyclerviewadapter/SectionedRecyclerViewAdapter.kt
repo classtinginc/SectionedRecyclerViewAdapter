@@ -65,7 +65,7 @@ open class SectionedRecyclerViewAdapter<out T>(context: android.content.Context,
         return baseAdapter.getItemViewType(getItemPosition(position))
     }
 
-    private fun getSectionedPosition(position: Int): Int =
+    open fun getSectionedPosition(position: Int): Int =
             (position + (if (useHeader()) 1 else 0)).let { pos ->
                 pos + (0 until sections.size())
                     .takeWhile { sections.valueAt(it).firstPosition <= pos }
