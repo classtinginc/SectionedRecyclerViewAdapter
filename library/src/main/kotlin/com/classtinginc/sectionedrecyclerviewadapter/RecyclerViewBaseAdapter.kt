@@ -39,10 +39,10 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
     }
 
     fun getItem(position: Int): T? {
-        if (getItemViewType(position) == ViewType.TYPE_HEADER) {
+        if (useHeader() && position == 0) {
             return null
         }
-        if (getItemViewType(position) == ViewType.TYPE_FOOTER) {
+        if (useFooter() && position == listItems.size) {
             return null
         }
         if (useHeader()) {
