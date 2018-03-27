@@ -42,10 +42,11 @@ abstract class RecyclerViewBaseAdapter<T>(protected val context: android.content
         if (useHeader() && position == 0) {
             return null
         }
-        if (useFooter() && position == listItems.size) {
+        val pos = if (useHeader()) position - 1 else position
+
+        if (useFooter() && pos == listItems.size) {
             return null
         }
-        val pos = if (useHeader()) position - 1 else position
         if (listItems.size <= pos) {
             return null
         }
